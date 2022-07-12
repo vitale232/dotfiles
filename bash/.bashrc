@@ -184,3 +184,5 @@ if [[ -z $DOTFILES ]]; then
     export DOTFILES=$HOME/dotfiles
 fi
 
+export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+

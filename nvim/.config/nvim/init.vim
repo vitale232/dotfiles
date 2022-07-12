@@ -199,15 +199,23 @@ fun! IgnoreCamelCaseSpell()
   syn cluster Spell add=CamelCase
 endfun
 
-function! HandleURL()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-  echo s:uri
-  if s:uri != ""
-    silent exec "!open '".s:uri."'"
-  else
-    echo "No URI found in line."
-  endif
-endfunction
+
+" (https://developers.arcgis.com/javascript/latest/api-reference/)
+fun! HandleURL()
+    let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+    let url_to_visit = ""
+    if s:uri[-1:-1] == ")"
+        let url_to_visit = s:uri[0:-2]
+    elseif
+        let url_to_visit = s:uri
+    endif
+    if url_to_visit != ""
+        echo url_to_visit
+        silent exec '!"$BROWSER" '.url_to_visit
+    else
+        echo "No URI found in this line."
+    endif
+endfun
 
 augroup VITALE232
     " Remove all previous listeners (incase the file is source multiple times),
