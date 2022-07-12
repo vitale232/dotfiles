@@ -2,6 +2,7 @@
   "rust-analyzer.server.path": "~/.local/bin/rust-analyzer",
   "cSpell.userWords": [
     "Agol",
+    "Angular's",
     "FEMA",
     "FMLM",
     "Formly",
@@ -22,6 +23,7 @@
     "luasnip",
     "mattn",
     "mfussenegger",
+    "monorepo's",
     "neoclide",
     "ngcc",
     "onsails",

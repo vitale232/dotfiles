@@ -56,6 +56,9 @@ Plug 'junegunn/fzf'
 " Doc Generator (JsDoc)
 Plug 'kkoomen/vim-doge'
 
+" Markdown Table Formatting
+Plug 'dhruvasagar/vim-table-mode'
+
 " Snips
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
