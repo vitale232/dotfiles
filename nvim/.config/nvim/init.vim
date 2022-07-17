@@ -117,7 +117,6 @@ call plug#end()
 lua require('harpoon').setup({menu = { width = vim.api.nvim_win_get_width(0) - 20,}})
 lua require('rust-tools').setup({})
 lua require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
-" lua require('nvim-tree-config')
 let mapleader = " "
 let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
