@@ -117,12 +117,7 @@ call plug#end()
 lua require('harpoon').setup({menu = { width = vim.api.nvim_win_get_width(0) - 20,}})
 lua require('rust-tools').setup({})
 lua require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
-lua require('av-nvim-cmp-conf')
-lua require('av-lsp-actions')
-lua require('av-ts-lsp-conf')
-lua require('av-lua-lsp-conf')
-lua require('av-nvim-tree')
-lua require('av-treesitter-conf')
+" lua require('nvim-tree-config')
 let mapleader = " "
 let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
@@ -225,7 +220,7 @@ augroup VITALE232
     " then run the command
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
-    autocmd BufWritePre *.ts,*.html,*.css,*.js Neoformat
+    autocmd BufWritePre *.ts,*.html,*.css,*.js,*.lua Neoformat
     autocmd BufRead,BufNewFile * :call IgnoreCamelCaseSpell()
 augroup END
 
