@@ -169,19 +169,6 @@ nnoremap <leader>spec :lua require('extenswap').swap_to('spec.ts')<cr>
 " coc code spell check via cSpell
 nnoremap <leader>a <Plug>(coc-codeaction-selected)
 
-" a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guibg=blue
-
-" Automatic file formatting
-
-" a list of groups can be found at `:help nvim_tree_highlight`
-highlight NvimTreeFolderIcon guibg=blue
-
-" Automatic file formatting
-
-" a list of groups can be found at `:help nvim_tree_highlight`
-" highlight NvimTreeFolderIcon guibg=blue
-
 " Automatic file formatting
 let g:neoformat_try_node_exe = 1
 
