@@ -2,7 +2,7 @@ set path+=**
 set clipboard=unnamedplus
 set wildignore+=**/node_modules/*,**/target/*,**/bin/*,**/obj/*,.git
 set mouse=a
-set list listchars=tab:␉·,trail:␠,nbsp:⎵,multispace:   │
+set list listchars=tab:⭾ ,trail:␠,nbsp:⎵,multispace:   │
 set completeopt+=menu,menuone,noselect
 
 " to create a new file use :e filename <cr>:w
@@ -160,11 +160,11 @@ nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<cr>
 nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<cr>
 nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<cr>
 
-nnoremap <leader>ts :lua require('extenswap').switch_to('ts')<cr>
-nnoremap <leader>html :lua require('extenswap').switch_to('html')<cr>
-nnoremap <leader>css :lua require('extenswap').switch_to('css')<cr>
-nnoremap <leader>scss :lua require('extenswap').switch_to('scss')<cr>
-nnoremap <leader>spec :lua require('extenswap').switch_to('spec.ts')<cr>
+nnoremap <leader>ts :lua require('extenswap').swap_to('ts')<cr>
+nnoremap <leader>html :lua require('extenswap').swap_to('html')<cr>
+nnoremap <leader>css :lua require('extenswap').swap_to('css')<cr>
+nnoremap <leader>scss :lua require('extenswap').swap_to('scss')<cr>
+nnoremap <leader>spec :lua require('extenswap').swap_to('spec.ts')<cr>
 
 " coc code spell check via cSpell
 nnoremap <leader>a <Plug>(coc-codeaction-selected)
