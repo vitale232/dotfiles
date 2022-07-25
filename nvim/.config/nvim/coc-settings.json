@@ -1,5 +1,4 @@
 {
-  "rust-analyzer.server.path": "~/.local/bin/rust-analyzer",
   "cSpell.userWords": [
     "Agol",
     "Angular's",
@@ -11,8 +10,11 @@
     "Vitale",
     "addattachment",
     "arcgis",
+    "arcpy",
     "carto",
+    "changin",
     "extenswap",
+    "fips",
     "flexy",
     "folke",
     "gruvbox",
@@ -36,6 +38,7 @@
     "shpd",
     "tpope",
     "umphrey",
+    "underserved",
     "urlset"
   ]
 }

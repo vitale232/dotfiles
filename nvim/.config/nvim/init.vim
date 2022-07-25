@@ -66,6 +66,7 @@ Plug 'rafamadriz/friendly-snippets'
 
 " thing  Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 " LSP completion source for nvim-cmp
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -113,6 +114,10 @@ Plug 'tree-sitter/tree-sitter-python'
 Plug 'ThePrimeagen/harpoon'
 
 call plug#end()
+
+" lsp_lines config for showing LSP errors in bufs
+lua require('lsp_lines').setup()
+lua vim.diagnostic.config({virtual_text = false})
 
 lua require('harpoon').setup({menu = { width = vim.api.nvim_win_get_width(0) - 20,}})
 lua require('rust-tools').setup({})
