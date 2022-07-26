@@ -6,8 +6,7 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
-mkdir -p ~/build
-pushd ~/build
+pushd /tmp
 
 rm -rf neovim
 git clone https://github.com/neovim/neovim
@@ -18,4 +17,7 @@ git checkout stable
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
-popd && popd
+popd
+rm -rf neovim
+popd
+
