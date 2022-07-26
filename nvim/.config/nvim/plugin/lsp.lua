@@ -2,6 +2,28 @@ local lspconfig = require("lspconfig")
 local null_ls = require("null-ls")
 local eslint = require("eslint")
 
+-- Setup lspconfig
+local lsp_defaults = {
+	flags = {
+		debounce_text_changes = 150,
+	},
+	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	on_attach = function(client, bufnr)
+		vim.api.nvim_exec_autocmds("User", {
+			pattern = "LspAttached",
+		})
+	end,
+}
+
+lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require("lspconfig")["rls"].setup({
+	capabilities = capabilities,
+})
+require("lspconfig")["angularls"].setup({
+	capabilities = capabilities,
+})
 null_ls.setup({
 	sources = {
 		-- disable eslint (next 2 lines) for pa-share
@@ -35,29 +57,6 @@ lspconfig.sumneko_lua.setup({
 			},
 		},
 	},
-})
-
--- Setup lspconfig
-local lsp_defaults = {
-	flags = {
-		debounce_text_changes = 150,
-	},
-	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-	on_attach = function(client, bufnr)
-		vim.api.nvim_exec_autocmds("User", {
-			pattern = "LspAttached",
-		})
-	end,
-}
-
-lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require("lspconfig")["rls"].setup({
-	capabilities = capabilities,
-})
-require("lspconfig")["angularls"].setup({
-	capabilities = capabilities,
 })
 
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
