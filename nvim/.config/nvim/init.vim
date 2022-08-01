@@ -190,12 +190,13 @@ endfun
 
 
 " (https://developers.arcgis.com/javascript/latest/api-reference/)
+" What if its https://developers.arcgis.com/javascript/latest/api-reference/
 fun! HandleURL()
     let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
     let url_to_visit = ""
     if s:uri[-1:-1] == ")"
         let url_to_visit = s:uri[0:-2]
-    elseif
+    else
         let url_to_visit = s:uri
     endif
     if url_to_visit != ""
