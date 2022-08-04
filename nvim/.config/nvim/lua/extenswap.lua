@@ -54,7 +54,7 @@ local function swap_to(new_ext)
 	if buf_id > -1 then
 		open_buf(buf_id)
 	else
-		local input = vim.ui.input(" No source file exists. Create it? (yes / y / sure / ok / okay): ")
+		local input = vim.fn.input(" No source file exists. Create it? (yes / y / sure / ok / okay): ")
 		handle_input(input, new_path)
 	end
 end
