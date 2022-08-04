@@ -85,7 +85,8 @@ Plug 'mfussenegger/nvim-dap'
 " Optional
 " Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Typescript and web
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -122,6 +123,7 @@ lua vim.diagnostic.config({virtual_text = false})
 lua require('harpoon').setup({menu = { width = vim.api.nvim_win_get_width(0) - 20,}})
 lua require('rust-tools').setup({})
 lua require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
+lua require('telescope').load_extension('fzf')
 let mapleader = " "
 let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
@@ -136,11 +138,14 @@ highlight Normal guibg=none ctermbg=none
 nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader><C-e> <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 " Find files using Telescope command-line sugar.
+nnoremap <leader>tele <cmd>Telescope<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <C-p> :Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>gs <cmd>Telescope git_status<cr>
+nnoremap <leader>gc <cmd>Telescope git_commits<cr>
 
 nnoremap <leader>e :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
