@@ -40,6 +40,7 @@ local function handle_input(input, new_path)
 		end
 	end
 	print(" :: Nothing created, bye! 👋")
+	return -1
 end
 
 local function swap_to(new_ext)
