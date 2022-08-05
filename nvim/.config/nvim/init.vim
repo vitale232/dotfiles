@@ -38,7 +38,7 @@ set signcolumn=yes
 
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable delays
 " and poor UX
-set updatetime=500
+set updatetime=50
 
 " This variable must be enabled for colors to be applied properly
 set termguicolors
