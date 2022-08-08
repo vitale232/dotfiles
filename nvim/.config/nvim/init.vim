@@ -106,7 +106,6 @@ Plug 'scrooloose/nerdcommenter'
 " File tree via nvim-tree
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-
 " Status bar pimpage
 Plug 'vim-airline/vim-airline'
 
@@ -131,7 +130,7 @@ let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
 let g:coc_suggest_disable = 1
 
-" Workaround to CursorLineNr to be yellow without highlighting whole line
+" Workaround to CursorLineNr to be highlighted without highlighting whole line
 " https://vi.stackexchange.com/a/24605
 set cursorline
 
@@ -141,7 +140,8 @@ let g:tokyonight_style = "night"
 colorscheme tokyonight
 highlight Normal guibg=none ctermbg=none
 highlight CursorLine guibg=none ctermbg=none
-highlight CursorLineNr term=bold guifg=Yellow ctermfg=Yellow
+" https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+highlight CursorLineNr term=bold guifg=DeepSkyBlue1 ctermfg=39
 
 nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader>do <cmd>lua vim.diagnostic.open_float()<cr>
