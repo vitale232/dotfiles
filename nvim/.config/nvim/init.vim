@@ -60,9 +60,10 @@ Plug 'kkoomen/vim-doge'
 Plug 'dhruvasagar/vim-table-mode'
 
 " Snips
-Plug 'L3MON4D3/LuaSnip'
+Plug 'petertriho/cmp-git'
 Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'rafamadriz/friendly-snippets'
+Plug 'L3MON4D3/LuaSnip'
+" Plug 'rafamadriz/friendly-snippets'
 
 " thing  Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -70,6 +71,7 @@ Plug 'neovim/nvim-lspconfig'
 " LSP completion source for nvim-cmp
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'onsails/lspkind-nvim'
@@ -129,11 +131,17 @@ let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
 let g:coc_suggest_disable = 1
 
+" Workaround to CursorLineNr to be yellow without highlighting whole line
+" https://vi.stackexchange.com/a/24605
+set cursorline
+
 " let g:gruvbox_contrast_dark = "hard"
 " colorscheme gruvbox
 let g:tokyonight_style = "night"
 colorscheme tokyonight
 highlight Normal guibg=none ctermbg=none
+highlight CursorLine guibg=none ctermbg=none
+highlight CursorLineNr term=bold guifg=Yellow ctermfg=Yellow
 
 nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader>do <cmd>lua vim.diagnostic.open_float()<cr>
@@ -176,8 +184,17 @@ nnoremap <leader>css :lua require('extenswap').swap_to('css')<cr>
 nnoremap <leader>scss :lua require('extenswap').swap_to('scss')<cr>
 nnoremap <leader>spec :lua require('extenswap').swap_to('spec.ts')<cr>
 
+" Execute this file
+nnoremap <leader><leader>x :call init#save_and_exec()<CR>
+" luasnip movements
+inoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+inoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
 " coc code spell check via cSpell
 nnoremap <leader>a <Plug>(coc-codeaction-selected)
+
 
 " Automatic file formatting
 let g:neoformat_try_node_exe = 1
@@ -217,6 +234,20 @@ fun! HandleURL()
         echo "No URI found in this line."
     endif
 endfun
+
+if !exists('*init#save_and_exec')
+  function! init#save_and_exec() abort
+    if &filetype == 'vim'
+      :silent! write
+      :source %
+    elseif &filetype == 'lua'
+      :silent! write
+      :luafile %
+    endif
+
+    return
+  endfunction
+endif
 
 augroup VITALE232
     " Remove all previous listeners (incase the file is source multiple times),
