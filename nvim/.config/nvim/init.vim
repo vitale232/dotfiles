@@ -147,7 +147,7 @@ nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader>do <cmd>lua vim.diagnostic.open_float()<cr>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>tele <cmd>Telescope<cr>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>lua require('utils').project_files()<cr>
 nnoremap <C-p> :Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
