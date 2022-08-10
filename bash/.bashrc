@@ -188,4 +188,5 @@ export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 export GCM_CREDENTIAL_STORE="gpg"
 GPG_TTY=$(tty)
 export GPG_TTY
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
