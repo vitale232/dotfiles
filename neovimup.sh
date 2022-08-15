@@ -6,6 +6,10 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
+sudo apt-get update
+sudo apt-get install ninja-build gettext libtool libtool-bin \
+    autoconf automake cmake g++ pkg-config unzip curl doxygen
+
 pushd /tmp
 
 rm -rf neovim
