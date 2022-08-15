@@ -122,7 +122,6 @@ call plug#end()
 lua vim.diagnostic.config({virtual_text = true, severity_sort = true, float = { source = 'always' }})
 
 lua require('harpoon').setup({menu = { width = vim.api.nvim_win_get_width(0) - 20,}})
-lua require('rust-tools').setup({})
 lua require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
 lua require('telescope').load_extension('fzf')
 let mapleader = " "
