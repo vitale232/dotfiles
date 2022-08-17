@@ -5,6 +5,10 @@ set mouse=a
 set list listchars=tab:⭾ ,trail:␠,nbsp:⎵,multispace:   │
 set completeopt+=menu,menuone,noselect
 
+set spell
+set spelllang=en_us
+set spelloptions=camel
+
 " to create a new file use :e filename <cr>:w
 " This broked Telescope's native `find_file` behavior
 " set autochdir
@@ -36,7 +40,7 @@ set scrolloff=8
 set colorcolumn=80,100
 set signcolumn=yes
 
-" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable delays
+" Having longer update time (default is 4000 ms = 4s) leads to noticeable delays
 " and poor UX
 set updatetime=50
 
@@ -48,7 +52,8 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" UI
 Plug 'gruvbox-community/gruvbox'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'junegunn/fzf'
@@ -74,6 +79,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+Plug 'f3fora/cmp-spell'
 Plug 'onsails/lspkind-nvim'
 
 Plug 'simrat39/rust-tools.nvim'
@@ -127,7 +133,6 @@ lua require('telescope').load_extension('fzf')
 let mapleader = " "
 let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
-let g:coc_suggest_disable = 1
 
 " Workaround to CursorLineNr to be highlighted without highlighting whole line
 " https://vi.stackexchange.com/a/24605
@@ -146,7 +151,8 @@ nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader>do <cmd>lua vim.diagnostic.open_float()<cr>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>tele <cmd>Telescope<cr>
-nnoremap <leader>ff <cmd>lua require('utils').project_files()<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>gf <cmd>lua require('utils').project_files()<cr>
 nnoremap <C-p> :Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -257,7 +263,9 @@ augroup VITALE232
     autocmd BufRead,BufNewFile * :call IgnoreCamelCaseSpell()
 augroup END
 
-augroup COC_IT_OFF
-    autocmd!
-    autocmd BufEnter * let b:coc_suggest_disable = 1
-augroup end
+" let g:coc_suggest_disable = 1
+" augroup COC_IT_OFF
+"     autocmd!
+"     autocmd BufEnter * let b:coc_suggest_disable = 1
+" augroup end
+

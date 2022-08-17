@@ -1,0 +1,17 @@
+config
+cmp
+filetype
+cmp
+cmp
+tabnine
+lsp
+lua
+luasnip
+nvim
+autochdir
+UX
+coc
+neoclide
+filename
+cr
+COMPOUNDMIN 5

@@ -85,6 +85,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer", keyword_length = 4 },
+		{ name = "spell" },
 	},
 	experimental = {
 		ghost_text = true,
