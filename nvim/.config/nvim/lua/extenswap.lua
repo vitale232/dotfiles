@@ -28,8 +28,9 @@ local function open_buf(buf_id)
 end
 
 local function handle_input(input, new_path)
+	local nada = " :: Nothing created, bye! 👋"
 	if input == nil then
-		print(" :: Nothing created, bye! 👋")
+		print(nada)
 		return -1
 	end
 	for _, value in ipairs({ "yes", "y", "sure", "ok", "okay" }) do
@@ -39,7 +40,7 @@ local function handle_input(input, new_path)
 			return buf_id
 		end
 	end
-	print(" :: Nothing created, bye! 👋")
+	print(nada)
 	return -1
 end
 
