@@ -3,6 +3,8 @@ local null_ls = require("null-ls")
 local eslint = require("eslint")
 
 -- Setup lspconfig
+lspconfig.ccls.setup({})
+
 local lsp_defaults = {
 	flags = {
 		debounce_text_changes = 150,
@@ -21,7 +23,6 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 local opts = {
 	tools = { -- rust-tools options
 		autoSetHints = true,
-		hover_with_actions = true,
 		inlay_hints = {
 			show_parameter_hints = false,
 			parameter_hints_prefix = "",

@@ -121,6 +121,7 @@ Plug 'tree-sitter/tree-sitter-python'
 " Harpooning
 Plug 'ThePrimeagen/harpoon'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
 
 " lsp_lines config for showing LSP errors in bufs
@@ -138,14 +139,18 @@ let g:user_emmet_mode="a"
 " https://vi.stackexchange.com/a/24605
 set cursorline
 
-" let g:gruvbox_contrast_dark = "hard"
-" colorscheme gruvbox
-let g:tokyonight_style = "night"
-colorscheme tokyonight
+let g:gruvbox_contrast_dark = "hard"
+colorscheme gruvbox
+" let g:tokyonight_style = "night"
+" colorscheme tokyonight
 highlight Normal guibg=none ctermbg=none
 highlight CursorLine guibg=none ctermbg=none
 " https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
 highlight CursorLineNr term=bold guifg=DeepSkyBlue1 ctermfg=39
+
+" markdown-preview
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
 
 nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader>do <cmd>lua vim.diagnostic.open_float()<cr>

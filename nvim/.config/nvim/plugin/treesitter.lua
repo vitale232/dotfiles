@@ -1,7 +1,9 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"angular",
+		"c",
 		"css",
+		"dockerfile",
 		"go",
 		"html",
 		"javascript",
