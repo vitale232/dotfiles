@@ -144,9 +144,9 @@ colorscheme gruvbox
 " let g:tokyonight_style = "night"
 " colorscheme tokyonight
 highlight Normal guibg=none ctermbg=none
-highlight CursorLine guibg=none ctermbg=none
+highlight CursorLine guibg=Gray9 ctermbg=none
 " https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
-highlight CursorLineNr term=bold guifg=DeepSkyBlue1 ctermfg=39
+" highlight CursorLineNr term=bold guifg=NavajoWhite3 ctermfg=39
 
 " markdown-preview
 let g:mkdp_auto_start = 0

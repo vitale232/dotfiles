@@ -44,11 +44,26 @@ local opts = {
 				checkOnSave = {
 					command = "clippy",
 				},
+				diagnostics = {
+					enable = true,
+					disabled = { "unresolved-proc-macro" },
+					enableExperimental = true,
+				},
 			},
 		},
 	},
 }
-require("lspconfig")["rust_analyzer"].setup({})
+require("lspconfig")["rust_analyzer"].setup({
+	-- settings = {
+	-- 	["rust-analyzer"] = {
+	-- 		diagnostics = {
+	-- 			enable = true,
+	-- 			disabled = { "unresolved-proc-macro" },
+	-- 			enableExperimental = true,
+	-- 		},
+	-- 	},
+	-- },
+})
 require("rust-tools").setup(opts)
 require("lspconfig")["angularls"].setup({
 	capabilities = capabilities,
