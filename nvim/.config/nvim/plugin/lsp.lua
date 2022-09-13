@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local configs = require("lspconfig/configs")
 local null_ls = require("null-ls")
 local eslint = require("eslint")
 
@@ -128,6 +129,20 @@ lspconfig.tsserver.setup({
 
 		on_attach(client, bufnr)
 	end,
+})
+
+local cap = vim.lsp.protocol.make_client_capabilities()
+lspconfig.emmet_ls.setup({
+	capabilities = cap,
+	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+	init_options = {
+		html = {
+			-- more options: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+			options = {
+				["bem.enabled"] = true,
+			},
+		},
+	},
 })
 
 eslint.setup({

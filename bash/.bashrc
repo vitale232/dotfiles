@@ -184,7 +184,9 @@ if [[ -z $DOTFILES ]]; then
     export DOTFILES=$HOME/dotfiles
 fi
 
-export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+export CHROME="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+export EDGE="/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+export BROWSER=$EDGE
 export GCM_CREDENTIAL_STORE="gpg"
 GPG_TTY=$(tty)
 export GPG_TTY

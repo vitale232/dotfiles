@@ -152,6 +152,9 @@ highlight CursorLine guibg=Gray9 ctermbg=none
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 
+" greatest remap ever
+xnoremap <leader>p "_dP<cr>
+
 nnoremap <leader>u :call HandleURL()<cr>
 nnoremap <leader>do <cmd>lua vim.diagnostic.open_float()<cr>
 " Find files using Telescope command-line sugar.
