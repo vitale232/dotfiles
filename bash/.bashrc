@@ -195,6 +195,10 @@ export GPG_TTY
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 
+source ~/secrets.sh
+
+alias show_status="pico-client $PICO_IP $CLIENT_ID common"
+
 # based on: https://stackoverflow.com/a/66398613/2264081
 # set DISPLAY to use X terminal in WSL
 # in WSL2 the localhost and network interfaces are not the same than windows
@@ -209,3 +213,4 @@ export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 #     fi
 #
 # fi
+
