@@ -197,7 +197,7 @@ export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 
 source ~/secrets.sh
 
-alias show_status="pico-client $PICO_IP $CLIENT_ID common"
+alias show_status="pico-client $PICO_IP $CLIENT_ID"
 
 # based on: https://stackoverflow.com/a/66398613/2264081
 # set DISPLAY to use X terminal in WSL
