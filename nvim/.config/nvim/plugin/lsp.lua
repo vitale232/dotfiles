@@ -10,7 +10,7 @@ local lsp_defaults = {
 	flags = {
 		debounce_text_changes = 150,
 	},
-	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	on_attach = function(client, bufnr)
 		vim.api.nvim_exec_autocmds("User", {
 			pattern = "LspAttached",
@@ -19,7 +19,7 @@ local lsp_defaults = {
 }
 
 lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 local opts = {
 	tools = { -- rust-tools options
@@ -116,8 +116,8 @@ end
 
 lspconfig.tsserver.setup({
 	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.document_formatting = false
+		client.server_capabilities.document_range_formatting = false
 
 		local ts_utils = require("nvim-lsp-ts-utils")
 		ts_utils.setup({})
@@ -131,19 +131,38 @@ lspconfig.tsserver.setup({
 	end,
 })
 
-local cap = vim.lsp.protocol.make_client_capabilities()
-lspconfig.emmet_ls.setup({
-	capabilities = cap,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
-	init_options = {
-		html = {
-			-- more options: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-			options = {
-				["bem.enabled"] = true,
-			},
-		},
-	},
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+if not configs.ls_emmet then
+  configs.ls_emmet = {
+    default_config = {
+      cmd = { 'ls_emmet', '--stdio' };
+      filetypes = {
+        'html',
+        'css',
+        'scss',
+        'javascriptreact',
+        'typescriptreact',
+        'haml',
+        'xml',
+        'xsl',
+        'pug',
+        'slim',
+        'sass',
+        'stylus',
+        'less',
+        'sss',
+        'hbs',
+        'handlebars',
+      };
+      root_dir = function(fname)
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+end
 
 eslint.setup({
 	-- bin = 'eslint', -- or `eslint_d`

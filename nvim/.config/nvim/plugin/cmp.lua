@@ -8,6 +8,11 @@ local source_mapping = {
 	path = "[Path]",
 }
 
+-- LSP gettin mad
+if cmp == nil then
+	return
+end
+
 cmp.setup({
 	completion = { autocomplete = false }, -- for debounce
 	flags = {},

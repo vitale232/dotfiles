@@ -61,6 +61,9 @@ Plug 'junegunn/fzf'
 " Doc Generator (JsDoc)
 Plug 'kkoomen/vim-doge'
 
+" Comments
+Plug 'numToStr/Comment.nvim'
+
 " Markdown Table Formatting
 Plug 'dhruvasagar/vim-table-mode'
 
@@ -99,10 +102,13 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Typescript and web
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'ShooTeX/nvim-treesitter-angular'
 Plug 'MunifTanjim/eslint.nvim'
 Plug 'mattn/emmet-vim'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-angular'
 
 " Formatting documents
 Plug 'sbdchd/neoformat'
@@ -110,8 +116,8 @@ Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdcommenter'
 
 " File tree via nvim-tree
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'kyazdani42/nvim-tree.lua'
 " Status bar pimpage
 Plug 'vim-airline/vim-airline'
 
@@ -131,6 +137,7 @@ lua vim.diagnostic.config({virtual_text = true, severity_sort = true, float = { 
 lua require('harpoon').setup({menu = { width = vim.api.nvim_win_get_width(0) - 20,}})
 lua require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
 lua require('telescope').load_extension('fzf')
+lua require('Comment').setup()
 let mapleader = " "
 let g:rustfmt_autosave = 1
 let g:user_emmet_mode="a"
@@ -139,10 +146,10 @@ let g:user_emmet_mode="a"
 " https://vi.stackexchange.com/a/24605
 set cursorline
 
-let g:gruvbox_contrast_dark = "hard"
-colorscheme gruvbox
-" let g:tokyonight_style = "night"
-" colorscheme tokyonight
+" let g:gruvbox_contrast_dark = "hard"
+" colorscheme gruvbox
+let g:tokyonight_style = "night"
+colorscheme tokyonight
 highlight Normal guibg=none ctermbg=none
 highlight CursorLine guibg=Gray9 ctermbg=none
 " https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
@@ -168,9 +175,10 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 nnoremap <leader>gc <cmd>Telescope git_commits<cr>
 
-nnoremap <leader>e :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>FF :Neoformat<cr>
+nnoremap <leader>e :Rexplore<cr>
+" nnoremap <leader>e :NvimTreeToggle<CR>
+" nnoremap <leader>r :NvimTreeRefresh<CR>
 " More available functions:
 " NvimTreeOpen
 " NvimTreeClose
@@ -267,7 +275,7 @@ augroup VITALE232
     " then run the command
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
-    autocmd BufWritePre *.ts,*.html,*.css,*.js,*.lua Neoformat
+    " autocmd BufWritePre *.ts,*.html,*.css,*.js,*.lua Neoformat
     autocmd BufRead,BufNewFile * :call IgnoreCamelCaseSpell()
 augroup END
 
