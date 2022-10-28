@@ -197,7 +197,7 @@ export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 
 source ~/secrets.sh
 
-alias show_status="pico-client $PICO_IP $CLIENT_ID"
+alias show_status="pico-client $PICO_IP $CLIENT_ID --poll-after 40"
 
 # based on: https://stackoverflow.com/a/66398613/2264081
 # set DISPLAY to use X terminal in WSL
@@ -214,3 +214,5 @@ alias show_status="pico-client $PICO_IP $CLIENT_ID"
 #
 # fi
 
+alias luamake=/home/vitale232/.config/lsp/lua-language-server/3rd/luamake/luamake
+export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
