@@ -128,10 +128,6 @@ devopsUpdateRemote() {
     git remote set-url origin "https://git:$1@vhbdev.visualstudio.com/$2"
 }
 
-# dotnet certs
-export ASPNETCORE_Kestrel__Certificates__Default__Password="trust-me"
-export ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/avitale/.aspnet/https/aspnetapp.pfx
-
 # dotnet projects
 alias dotnet-launch-pa='cd ~/prj/pa-share-web-api/pa-share-web-api && dotnet watch run --urls=https://localhost:44330 --launch-profile local'
 
@@ -163,9 +159,6 @@ enter_directory() {
 export PROMPT_COMMAND=enter_directory
 . "$HOME/.cargo/env"
 
-## Oh My Posh: https://ohmyposh.dev/
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/nordtron.omp.json)"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/prj/qrest/target/release/:$HOME/.local/bin:$PATH"
 
 export COLORTERM="truecolor"
 
@@ -177,7 +170,11 @@ alias tmux='TERM=xterm-256color tmux'
 alias vim='nvim'
 
 if [[ -z $STOW_FOLDERS ]]; then
-    export STOW_FOLDERS="bash,nvim,tmux"
+    export STOW_FOLDERS="bash,nvim,tmux,screen"
+fi
+
+if [[ -z $SCREENRC ]]; then
+    export SCREENRC="$HOME/.screenrc"
 fi
 
 if [[ -z $DOTFILES ]]; then
@@ -216,3 +213,7 @@ alias show_status="pico-client $PICO_IP $CLIENT_ID --poll-after 40"
 
 alias luamake=/home/vitale232/.config/lsp/lua-language-server/3rd/luamake/luamake
 export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
+
+alias debug_board="screen /dev/ttyACM0 115200"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
