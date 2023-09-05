@@ -110,6 +110,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-angular'
 
+" Comments
+Plug 'terrortylor/nvim-comment'
+
 " Formatting documents
 Plug 'sbdchd/neoformat'
 " Comments

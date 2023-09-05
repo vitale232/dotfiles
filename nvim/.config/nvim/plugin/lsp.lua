@@ -2,6 +2,7 @@ local lspconfig = require("lspconfig")
 local configs = require("lspconfig/configs")
 local null_ls = require("null-ls")
 local eslint = require("eslint")
+local util = require("lspconfig.util")
 
 -- Setup lspconfig
 lspconfig.ccls.setup({})
@@ -66,18 +67,48 @@ require("lspconfig")["rust_analyzer"].setup({
 	-- },
 })
 require("rust-tools").setup(opts)
-require("lspconfig")["angularls"].setup({
-	capabilities = capabilities,
-})
-null_ls.setup({
-	sources = {
-		-- disable eslint (next 2 lines) for pa-share
-		null_ls.builtins.diagnostics.eslint,
-		null_ls.builtins.code_actions.eslint,
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.formatting.stylua,
-	},
-})
+
+-- https://github.com/mhartington/dotfiles/blob/main/config/nvim/lua/mh/lsp/init.lua
+local uv = vim.loop
+local function get_node_modules(root_dir)
+  -- util.find_node_modules_ancestor()
+  local root_node = root_dir .. "/node_modules"
+  local stats = uv.fs_stat(root_node)
+  if stats == nil then
+    return nil
+  else
+    return root_node
+  end
+end
+
+local default_node_modules = get_node_modules(vim.fn.getcwd())
+
+local ngls_cmd = {
+  "ngserver",
+  "--stdio",
+  "--tsProbeLocations",
+  default_node_modules,
+  "--ngProbeLocations",
+  default_node_modules,
+  "--includeCompletionsWithSnippetText",
+  "--includeAutomaticOptionalChainCompletions",
+  -- "--logToConsole",
+  -- "--logFile",
+  -- "./logs/angularls.log"
+
+}
+lspconfig.angularls.setup {
+  cmd = ngls_cmd,
+  capabilities = capabilities,
+  root_dir = util.root_pattern("angular.json", "nx.json", "project.json"),
+  on_new_config = function(new_config)
+    new_config.cmd = ngls_cmd
+  end
+}
+-- require("lspconfig")["angularls"].setup({
+--     capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- })
+null_ls.setup()
 
 lspconfig.pyright.setup({})
 
@@ -110,12 +141,19 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
 	})
 end
 
-local on_attach = function(client, bufnr)
-	vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+-- local on_attach = function(client, bufnr)
+-- 	vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+-- end
+
+local function organize_imports()
+    local params = {
+        command = "_typescript.organizeImports",
+        arguments = {vim.api.nvim_buf_get_name(0)},
+        title = ""
+    }
 end
 
-lspconfig.tsserver.setup({
-	on_attach = function(client, bufnr)
+local function on_ts_attach(client, bufnr)
 		client.server_capabilities.document_formatting = false
 		client.server_capabilities.document_range_formatting = false
 
@@ -126,9 +164,17 @@ lspconfig.tsserver.setup({
 		buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
 		buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
 		buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+		-- on_attach(client, bufnr)
+end
 
-		on_attach(client, bufnr)
-	end,
+lspconfig.tsserver.setup({
+	on_attach =  on_ts_attach,
+    commands = {
+        OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports"
+        }
+    }
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
