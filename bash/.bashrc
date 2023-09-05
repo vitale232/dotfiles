@@ -136,32 +136,32 @@ export ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/avitale/.asp
 alias dotnet-launch-pa='cd ~/prj/pa-share-web-api/pa-share-web-api && dotnet watch run --urls=https://localhost:44330 --launch-profile local'
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # automatically apply .nvmrc configs
 # https://stackoverflow.com/a/50378304/2264081
-enter_directory() {
-  if [[ $PWD == $PREV_PWD ]]; then
-    return
-  fi
-
-  if [[ "$PWD" =~ "$PREV_PWD" && ! -f ".nvmrc" ]]; then
-    return
-  fi
-
-  PREV_PWD=$PWD
-  if [[ -f ".nvmrc" ]]; then
-    nvm use
-    NVM_DIRTY=true
-  elif [[ $NVM_DIRTY = true ]]; then
-    nvm use default
-    NVM_DIRTY=false
-  fi
-}
-export PROMPT_COMMAND=enter_directory
-. "$HOME/.cargo/env"
+# enter_directory() {
+#   if [[ $PWD == $PREV_PWD ]]; then
+#     return
+#   fi
+#
+#   if [[ "$PWD" =~ "$PREV_PWD" && ! -f ".nvmrc" ]]; then
+#     return
+#   fi
+#
+#   PREV_PWD=$PWD
+#   if [[ -f ".nvmrc" ]]; then
+#     nvm use
+#     NVM_DIRTY=true
+#   elif [[ $NVM_DIRTY = true ]]; then
+#     nvm use default
+#     NVM_DIRTY=false
+#   fi
+# }
+# export PROMPT_COMMAND=enter_directory
+#. "$HOME/.cargo/env"
 
 ## Oh My Posh: https://ohmyposh.dev/
 eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/nordtron.omp.json)"
@@ -187,9 +187,9 @@ fi
 export CHROME="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 export EDGE="/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 export BROWSER=$EDGE
-export GCM_CREDENTIAL_STORE="gpg"
-GPG_TTY=$(tty)
-export GPG_TTY
+# export GCM_CREDENTIAL_STORE="gpg"
+# GPG_TTY=$(tty)
+# export GPG_TTY
 
 # MS is creepin
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -197,7 +197,8 @@ export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 
 source ~/secrets.sh
 
-alias show_status="pico-client $PICO_IP $CLIENT_ID --poll-after 40"
+alias show_status="pico-client $JAMIES_PICO_IP $CLIENT_ID --poll-after 40"
+alias show_my_status="pico-client $PICO_IP $CLIENT_ID --poll-after 40"
 
 # based on: https://stackoverflow.com/a/66398613/2264081
 # set DISPLAY to use X terminal in WSL
@@ -216,3 +217,5 @@ alias show_status="pico-client $PICO_IP $CLIENT_ID --poll-after 40"
 
 alias luamake=/home/vitale232/.config/lsp/lua-language-server/3rd/luamake/luamake
 export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
